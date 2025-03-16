@@ -67,7 +67,7 @@
 .btn-toolbar {
   .btn-group {
     +.btn-group {
-      @extend .ml-2;
+      @extend .ms-2;
     }
   }
 }
@@ -102,8 +102,8 @@
     &:hover,
     &:focus,
     &:active {
-      background: theme-color($color);
-      color: $black;
+      background: $color !important;
+      color: $gray-light;
     }
   }
 }

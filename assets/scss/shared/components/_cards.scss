@@ -5,7 +5,7 @@
   background: $card-bg;
   border: 1px solid $border-color;
   .card-body {
-    padding: $card-padding-y $card-padding-x;
+    padding: $card-padding-y calc($card-padding-x - 8px);
     + .card-body {
       padding-top: 1rem;
     }
@@ -32,16 +32,16 @@
     font-weight: $font-weight-regular;
   }
   &.card-outline-success {
-    border: 1px solid theme-color("success");
+    border: 1px solid $success;
   }
   &.card-outline-primary {
-    border: 1px solid theme-color("primary");
+    border: 1px solid $primary;
   }
   &.card-outline-warning {
-    border: 1px solid theme-color("warning");
+    border: 1px solid $warning;
   }
   &.card-outline-danger {
-    border: 1px solid theme-color("danger");
+    border: 1px solid $danger;
   }
   &.card-rounded {
     @include border-radius(5px);
@@ -60,13 +60,21 @@
     box-shadow: none;
   }
 }
-
+@media (min-width: 576px) {
+  .card-columns {
+    column-count: 3;
+    column-gap: 1.25rem;
+    orphans: 1;
+    widows: 1;
+    .card {
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 0.75rem;
+    }
+  }
+}
 @each $color, $value in $theme-colors {
   .card-inverse-#{$color} {
-    @include card-inverse-variant(
-      rgba(theme-color($color), 0.2),
-      theme-color-level($color, 1),
-      theme-color-level($color, 3)
-    );
+    @include card-inverse-variant(rgba($value, .2), theme-color-level($color, 1), theme-color-level($color, 3));
   }
 }

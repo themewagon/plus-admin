@@ -1,14 +1,11 @@
 'use strict'
 var gulp = require('gulp');
 var browserSync = require('browser-sync').create();
-var sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 var gutil = require('gulp-util');
 var plumber = require('gulp-plumber');
 var notify = require('gulp-notify');
 var sourcemaps = require('gulp-sourcemaps');
-var autoprefixer = require('gulp-autoprefixer');
-// const del = require('del');
-
 
 gulp.task('sass', function () {
     return gulp.src('./assets/scss/**/*.scss')
@@ -23,11 +20,11 @@ gulp.task('sass', function () {
             }
         }))
         .pipe(sass())
-        .pipe(autoprefixer({
-            overrideBrowserslist: ['last 2 versions'],
-            cascade: false
-        }))
-        .pipe(sourcemaps.write('./'))
+        // .pipe(autoprefixer({
+        //     overrideBrowserslist: ['last 2 versions'],
+        //     cascade: false
+        // }))
+        .pipe(sourcemaps.write('./maps'))
         .pipe(gulp.dest('./assets/css'))
         .pipe(browserSync.stream());
 });
@@ -37,7 +34,7 @@ gulp.task('serve', gulp.series('sass', function () {
 
     browserSync.init({
         port: 3000,
-        server: "./",
+        server: "../dist",
         ghostMode: false,
         notify: false
     });
@@ -47,13 +44,9 @@ gulp.task('serve', gulp.series('sass', function () {
 
 }));
 
-
-
 gulp.task('sass:watch', function () {
     gulp.watch('./assets/scss/**/*.scss');
 });
-
-
 
 // Static Server without watching scss files
 gulp.task('serve:lite', function () {
@@ -64,8 +57,8 @@ gulp.task('serve:lite', function () {
         notify: false
     });
 
-    gulp.watch('**/*.css').on('change', browserSync.reload);
-    gulp.watch('**/*.html').on('change', browserSync.reload);
-    gulp.watch('**/*.js').on('change', browserSync.reload);
+    // gulp.watch('**/*.css').on('change', browserSync.reload);
+    // gulp.watch('**/*.html').on('change', browserSync.reload);
+    // gulp.watch('**/*.js').on('change', browserSync.reload);
 
 });

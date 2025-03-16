@@ -23,6 +23,7 @@
     font-size: $default-font-size;
     line-height: 1;
     white-space: nowrap;
+    padding: .9375rem;
 
     img {
       width: 36px;
@@ -44,34 +45,40 @@
       border: none;
     }
   }
+
   &.apointment-table {
     td {
       img {
         width: 20px;
-        height:20px;
+        height: 20px;
       }
     }
   }
 }
+
 .custom-table {
   thead {
     th {
       font-weight: $font-weight-bold;
       font-size: 14px;
       background: $thead-bg;
+
       &:first-child {
         padding-left: 28px;
+
         .rtl & {
           padding-right: 28px;
         }
       }
     }
+
     tr {
       th {
         border: 0;
       }
     }
   }
+
   th,
   td {
     vertical-align: middle;
@@ -87,20 +94,34 @@
       border-radius: 0;
     }
   }
+
   td:first-child {
     padding-left: 28px;
+
     .rtl & {
       padding-right: 28px;
     }
   }
+
   tbody {
     tr {
       border-bottom: 1px solid $border-color;
+
       &:first-child {
-      td {
-        border: 0;
+        td {
+          border: 0;
+        }
       }
     }
-    }
   }
+}
+
+.table> :not(:last-child)> :last-child>*,
+.jsgrid .jsgrid-table> :not(:last-child)> :last-child>* {
+  border-bottom-color: $border-color;
+}
+
+.table> :not(:first-child),
+.jsgrid .jsgrid-table> :not(:first-child) {
+  border-top: none;
 }

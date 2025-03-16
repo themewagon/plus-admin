@@ -13,3 +13,8 @@
     background: social-color($color);
   }
 }
+@each $color, $value in $theme-colors {
+  .bg-#{$color} {
+    @include social-color($value);
+  }
+}
